@@ -19,14 +19,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  '/': { view: 'pages/addProduct' },
   '/show': { view: 'pages/show' },
 
-  "POST /Crud/create":'CrudController.create',
-  "GET /Crud/get":'CrudController.get',
-  "GET /Crud/updateOne/:id":'CrudController.updateOne',
-  "POST /Crud/updateOne/:id":'CrudController.update',
-  "GET /:id":'CrudController.delete'
+  "POST /Crud/create": 'CrudController.create',
+  "GET /Crud/get": 'CrudController.get',
+  "GET /Crud/updateOne/:id": 'CrudController.updateOne',
+  "POST /Crud/updateOne/:id": 'CrudController.update',
+  "GET /:id": 'CrudController.delete'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

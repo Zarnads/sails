@@ -7,12 +7,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <title>Signup Page</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<title>Add Product</title>
 	<!--Made with love by Mutiullah Samim -->
 
 	<!--Bootsrap 4 CDN-->
@@ -27,8 +28,9 @@
 
 </head>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">CRUD</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,24 +41,28 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
-				
-			
+
+
 
 			</ul>
 		</div>
 	</nav>
-  <form method="post" action="/Crud/create">
-    <div class="form-group">
-      <label for="product">product</label>
-      <input type="product" class="form-control" name="product" id="product" placeholder="Enter product">
-      <small id="product" class="form-text text-muted"></small>
-    </div>
-    <div class="form-group">
-      <label for="price">price</label>
-      <input type="price" class="form-control" id="price"  name="price"   placeholder="price">
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+	<h3>ADD PRODUCT</h3>
+	<form method="post" action="/Crud/create">
+		<div class="form-group">
+			<label for="product">product</label>
+			<input type="product" class="form-control" name="product" id="product" placeholder="Enter product">
+			<small id="product" class="form-text text-muted"></small>
+		</div>
+		<div class="form-group">
+			<label for="price">price</label>
+			<input type="price" class="form-control" id="price" name="price" placeholder="price">
+		</div>
+		<label for="image">Choose a profile picture:</label>
+
+		<input type="file" id="image" name="image" accept="image/png, image/jpeg">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 </body>
+
 </html>
