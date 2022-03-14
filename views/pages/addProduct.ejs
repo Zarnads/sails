@@ -11,6 +11,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 	<title>Document</title>
 	<title>Add Product</title>
 	<!--Made with love by Mutiullah Samim -->
@@ -24,9 +26,16 @@
 		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 	<!--Custom styles-->
-	<script>jQuery("#product").validate({
-			rules: { product: "required" }, messages: { product: "please enter product name" }
-		});</script>
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<style>
+		.error {
+			color: red;
+			
+		}
+	</style>
 </head>
 
 
@@ -55,12 +64,36 @@
 		</div>
 		<div class="form-group">
 			<label for="price">price</label>
-			<input type="price" class="form-control" id="price" name="price"  placeholder="price" required>
+			<input type="number" class="form-control" id="price" name="price" placeholder="price" required>
 		</div>
+
 		<label for="image">Choose a picture:</label>
 		<input type="file" id="image" name="image" accept="image/png, image/jpeg">
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+	<script>
+		$("#form").validate({
+			rules: {
+				product: {
+					required: true,
+					minlength: 2
+				},
+				price:{
+					required:true,
+					min:5
+				}
+			}, messages: {
+				product: {
+					required: "please enter product name",
+					
+				},
+				price:{
+					required:"please enter the price",
+					min:"price must be greater than 5"
+				}
+			}
+
+		});</script>
 </body>
 
 </html>
