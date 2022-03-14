@@ -6,19 +6,21 @@
  */
 
 const multer = require('multer');
-const upload = multer({dest:'uploads/'});
+const upload = multer({ dest: 'uploads/' });
+
+
 module.exports = {
     create: async function (req, res) {
         try {
-            console.log(req.file);
+            
             const data = await Product.create({
 
                 product: req.body.product,
                 price: req.body.price,
-                image:req.body.image
+                image: req.body.image
 
             });
-            console.log(data);
+          
             res.redirect("http://localhost:1337/Crud/get")
 
         }
@@ -42,12 +44,12 @@ module.exports = {
         }
         catch (err) { res.json({ msg: err }) }
 
-        console.log("thik hai")
+    
     },
 
     update: async function (req, res) {
         try {
-            console.log("hey")
+       
             const id = req.params.id;
 
             let data = await Product.findOne({ _id: req.params.id });
@@ -68,7 +70,7 @@ module.exports = {
     },
     delete: async function (req, res) {
         try {
-            console.log("heyyya");
+            
 
             let data = await Product.findOne({ _id: req.params.id });
             console.log(data);
