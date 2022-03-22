@@ -14,37 +14,35 @@ module.exports = {
         try {
             let rules = {
                 product: "required",
-                price:'required|min:2|numeric',
-               };
-            let data2 = {  product: req.body.product,
-                           price: req.body.price}
-
-            let arr = ["product","price"] ;          
-
-            for(var i = 0;i<arr.length-1;i++){
-               
-                let validate= new Validator(data2, rules);
-                if(validate.passes()){ const data = await Product.create({
-                    product: req.body.product,
-                    price: req.body.price,
-                    image: req.body.image
-                  
-                });
-                res.redirect("http://localhost:1337/Crud/get");
+                price: 'required|min:2|numeric',
+            };
+            let data2 = {
+                product: req.body.product,
+                price: req.body.price
+            }
+            let arr = ["product", "price"];
+            for (var i = 0; i < arr.length - 1; i++) {
+                let validate = new Validator(data2, rules);
+                if (validate.passes()) {
+                    const data = await Product.create({
+                        product: req.body.product,
+                        price: req.body.price,
+                        image: req.body.image
+                    });
+                    res.redirect("http://localhost:1337/Crud/get");
                 }
                 if (validate.fails()) {
                     const errorList = validate.errors.all();
-                    console.log(errorList.price);
-                   res.render("pages/addProduct", {err: errorList});
-                  }
+                    res.render("pages/addProduct", { err: errorList });
+                }
             }
-            
-           
+
+
         }
-        catch (err) { res.json({ err:err }) }
+        catch (err) { res.json({ err: err }) }
     },
 
-    addpage:function(req,res){ res.render("pages/addProduct", {err: null})},
+    addpage: function (req, res) { res.render("pages/addProduct", { err: null }) },
 
     get: async function (req, res) {
         try {
