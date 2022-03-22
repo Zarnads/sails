@@ -20,8 +20,7 @@ module.exports = {
                 product: req.body.product,
                 price: req.body.price
             }
-            let arr = ["product", "price"];
-            for (var i = 0; i < arr.length - 1; i++) {
+        
                 let validate = new Validator(data2, rules);
                 if (validate.passes()) {
                     const data = await Product.create({
@@ -35,7 +34,7 @@ module.exports = {
                     const errorList = validate.errors.all();
                     res.render("pages/addProduct", { err: errorList });
                 }
-            }
+            
 
 
         }
