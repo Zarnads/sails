@@ -58,20 +58,27 @@
 	<form method="post" id="form" action="/Crud/create">
 		<div class="form-group">
 			<label for="product">product</label>
-			<input type="product" class="form-control" name="product" minlength="5" id="product"
-				placeholder="Enter product" required>
+			
+			<input type="product"  pattern="[a-zA-Z0-9]{3}+" class="form-control" name="product" minlength="5" id="product"
+				placeholder="Enter product" >
+		
 			<small id="product" class="form-text text-muted"></small>
 		</div>
 		<div class="form-group">
 			<label for="price">price</label>
-			<input type="number" class="form-control" id="price" name="price" placeholder="price" required>
+			<input type="number" class="form-control" id="price" name="price" placeholder="price">
 		</div>
 
 		<label for="image">Choose a picture:</label>
-		<input type="file" id="image" name="image" accept="image/png, image/jpeg">
+		<input type="file" id="image" name="image" accept="image/png, image/jpeg"><%if(err!=null){%>
+			<%if(err.price == undefined)%>
+		<p><%= err.product %></p>
+		<%if(err.product == undefined)%>
+		<p><%= err.price %></p>
+		<%}%>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	<script>
+	<!-- <script>
 		$("#form").validate({
 			rules: {
 				product: {
@@ -93,7 +100,7 @@
 				}
 			}
 
-		});</script>
+		});</script> -->
 </body>
 
 </html>

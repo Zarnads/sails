@@ -19,8 +19,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/addProduct' },
-  '/show': { view: 'pages/show' },
+  '/': 'CrudController.addpage',
+  '/show': { view: 'pages/showProduct' },
 
   "POST /Crud/create": 'CrudController.create',
   "GET /Crud/get": 'CrudController.get',

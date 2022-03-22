@@ -7,21 +7,44 @@
 
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-
+let Validator = require('validatorjs');
 
 module.exports = {
     create: async function (req, res) {
         try {
-            const data = await Product.create({
-                product: req.body.product,
-                price: req.body.price,
-                image: req.body.image
+            let rules = {
+                product: "required",
+                price:'required|min:2|numeric',
+               };
+            let data2 = {  product: req.body.product,
+                           price: req.body.price}
 
-            });
-            res.redirect("http://localhost:1337/Crud/get")
+            let arr = ["product","price"] ;          
+
+            for(var i = 0;i<arr.length-1;i++){
+               
+                let validate= new Validator(data2, rules);
+                if(validate.passes()){ const data = await Product.create({
+                    product: req.body.product,
+                    price: req.body.price,
+                    image: req.body.image
+                  
+                });
+                res.redirect("http://localhost:1337/Crud/get");
+                }
+                if (validate.fails()) {
+                    const errorList = validate.errors.all();
+                    console.log(errorList.price);
+                   res.render("pages/addProduct", {err: errorList});
+                  }
+            }
+            
+           
         }
-        catch (err) { res.json({ msg: err }) }
+        catch (err) { res.json({ err:err }) }
     },
+
+    addpage:function(req,res){ res.render("pages/addProduct", {err: null})},
 
     get: async function (req, res) {
         try {
