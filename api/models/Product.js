@@ -14,42 +14,25 @@ module.exports = {
     price: {
       type: 'number',
       required: true,
-
     },
-    image: {
-      type: 'string'
-    },
+ 
   },
-
-  validation: function (req, res) {
-
+  validation: function (data) {
     let rules = {
       product: "required",
       price: 'required|min:5|numeric',
+      // image:'required',
     };
     let data2 = {
-      product: req.body.product,
-      price: req.body.price
+      product: data.product,
+      price: data.price,
+      // image:data.image,
     };
-
     let validate = new Validator(data2, rules);
     if (validate.passes()) {
       return { data2: "ok", err: null }
     }
     else { return { data2: null, err: validate.errors.all() } }
-
-
-
-
-
-
   },
-
-
-
-
-
-
-
 };
 

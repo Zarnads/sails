@@ -21,12 +21,13 @@ module.exports.routes = {
 
   '/': 'CrudController.addpage',
   '/show': { view: 'pages/showProduct' },
-
   "POST /Crud/create": 'CrudController.create',
   "GET /Crud/get": 'CrudController.get',
   "GET /Crud/updateOne/:id": 'CrudController.updateOne',
   "POST /Crud/updateOne/:id": 'CrudController.update',
-  "GET /:id": 'CrudController.delete'
+  "GET /:id": 'CrudController.delete',
+  "POST /upload":"CrudController.upload",
+  "GET /openimg/:filename":"CrudController.openimg"
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

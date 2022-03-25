@@ -6,42 +6,65 @@
  */
 
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 let Validator = require('validatorjs');
-
-
+const img = require("express-fileupload");
 module.exports = {
     create: async function (req, res) {
         try {
-            const obj = Product.validation(req, res);
-            if (obj.data2 != null) {
-                const data = await Product.create({
-                    product: req.body.product,
-                    price: req.body.price,
-                    image: req.body.image
-                });
-                res.redirect("http://localhost:1337/Crud/get");
-            }
-            else {
-                const errorList = obj.err;
-                res.render("pages/addProduct", { err: errorList });
-            }
+            req.file('file').upload({
+                maxBytes: 1073741824
+            }, async function onUploadComplete(err, files) {
+                if (err) {
+                    sails.log.error(err);
+                    return res.json({
 
-
-
+                        data: [],
+                        error: err,
+                    });
+                }
+                if (_.isEmpty(files)) {
+                    return res.json({
+                        data: [],
+                        error: "The file field is required.",
+                    });
+                }
+                console.log(req.file('file'));
+                if (!files.length) {
+                    return res.json({
+                        data: [],
+                        error: "No file Uploaded",
+                    });
+                }
+                const contentType = req.file('file')._files[0].stream.headers['content-type'];
+                const fileName = req.file('file')._files[0].stream.filename;
+                let docPath = `${req.params.userId}_${Math.floor(Date.now() / 1000)}_${fileName}`;
+                console.log(files[0].fd);
+                const obj = Product.validation(req.body);
+                if (obj.data2 != null) {
+                    const data = await Product.create({
+                        product: req.body.product,
+                        price: req.body.price,
+                        filepath: files[0].fd,
+                        file: files[0].filename,
+                    });
+                    console.log(files[0].filename, "here");
+                    res.redirect("http://localhost:1337/Crud/get");
+                }
+                else {
+                    const errorList = obj.err;
+                    res.render("pages/addProduct", { err: errorList });
+                }
+            });
         }
-        catch (err) { res.json({ err: err }) }
+        catch (err) { res.json({ msg: "err at catchh" }) }
     },
-
     addpage: function (req, res) { res.render("pages/addProduct", { err: null }) },
-
     get: async function (req, res) {
         try {
             const data = await Product.find();
             res.render("pages/showProduct", { data: data });
         } catch { res.json({ msg: "err at get" }) }
     },
-
     updateOne: async function (req, res) {
         console.log(req.params.id);
         try {
@@ -51,7 +74,6 @@ module.exports = {
         }
         catch (err) { res.json({ msg: err }) }
     },
-
     update: async function (req, res) {
         try {
             let data = await Product.findOne({ _id: req.params.id });
@@ -66,8 +88,6 @@ module.exports = {
         }
         catch (err) { res.json({ msg: "error at updatee" }) }
     },
-
-
     delete: async function (req, res) {
         try {
             let data = await Product.findOne({ _id: req.params.id });
