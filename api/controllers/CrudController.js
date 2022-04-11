@@ -28,7 +28,7 @@ module.exports = {
                         error: "The file field is required.",
                     });
                 }
-                console.log(req.file('file'));
+
                 if (!files.length) {
                     return res.json({
                         data: [],
@@ -38,7 +38,7 @@ module.exports = {
                 const contentType = req.file('file')._files[0].stream.headers['content-type'];
                 const fileName = req.file('file')._files[0].stream.filename;
                 let docPath = `${req.params.userId}_${Math.floor(Date.now() / 1000)}_${fileName}`;
-                console.log(files[0].fd);
+
                 const obj = Product.validation(req.body);
                 if (obj.data2 != null) {
                     const data = await Product.create({
@@ -47,7 +47,7 @@ module.exports = {
                         filepath: files[0].fd,
                         file: files[0].filename,
                     });
-                    console.log(files[0].filename, "here");
+
                     res.redirect("http://localhost:1337/Crud/get");
                 }
                 else {
@@ -66,7 +66,6 @@ module.exports = {
         } catch { res.json({ msg: "err at get" }) }
     },
     updateOne: async function (req, res) {
-        console.log(req.params.id);
         try {
             let data = await Product.findOne({ _id: req.params.id });
             if (data) { res.render("pages/updateproduct", { data }); }
@@ -99,5 +98,22 @@ module.exports = {
                 }
             });
         } catch { res.json({ msg: "ree at delete" }) }
+    },
+    description:async function(req,res){
+        try{
+            let data = await Product.findOne({ _id: req.params.id });
+            res.render("pages/description",{data:data});
+           
+        }
+        catch (err) { res.json({ msg: "error at updatee" }) }
+    },
+    cart:async function(req,res){
+        try{
+            let data = await Product.findOne({ _id: req.params.id });
+            
+            res.render("pages/cart",{data:data});
+           
+        }
+        catch (err) { res.json({ msg: "error at updatee" }) }
     }
 }

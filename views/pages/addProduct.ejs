@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +21,7 @@
 	</style>
 	<link rel="stylesheet" href="/styles/style.css">
 </head>
+
 <body>
 	<nav class="nav">
 		<div class="navfont" id="navbarNav">
@@ -34,35 +36,34 @@
 		<h3>ADD PRODUCT</h3>
 		<form method="post" id="form" enctype="multipart/form-data" action="/Crud/create">
 
-		<div class="user-box">
+			<div class="user-box">
 
-			<input type="product" form="form" pattern="[a-zA-Z0-9]{3}+" name="product" minlength="5" id="product"
-				placeholder="Enter product">
-			<small id="product" class="form-text text-muted"></small>
-			<label for="product">product</label>
-		</div>
-		<div class="user-box">
-			<input type="number" id="price" name="price" placeholder="price">
-			<label for="price">price</label>
-		</div>
-		<p>Upload Picture:</p>  
-		<p><input type="file" name="file" required/> </p> <br>
-		<button class="bu" value="submit" type="submit">Submit</button>
-		<p>
-			
-			<%if(err!=null){%>
-				<%if(err.price==undefined)%> 
-					<p>
-						<%= err.product %>
-					</p>
-					<%if(err.product==undefined)%>
+				<input type="product" form="form" pattern="[a-zA-Z0-9]{3}+" name="product" minlength="5" id="product"
+					placeholder="Enter product">
+				<small id="product" class="form-text text-muted"></small>
+				<label for="product">product</label>
+			</div>
+			<div class="user-box">
+				<input type="number" id="price" name="price" placeholder="price">
+				<label for="price">price</label>
+			</div>
+			<p>Upload Picture:</p>
+			<p><input type="file" name="file" required /> </p> <br>
+			<button class="bu" value="submit" type="submit">Submit</button>
+			<p>
+				<%if(err!=null){%>
+					<%if(err.price==undefined)%>
 						<p>
-							<%= err.price %>
+							<%= err.product %>
 						</p>
-						<%}%>
-		</p>
+						<%if(err.product==undefined)%>
+							<p>
+								<%= err.price %>
+							</p>
+							<%}%>
+			</p>
 	</div>
-</form>
+	</form>
 	<script>
 		$("#form").validate({
 			rules: {
@@ -85,4 +86,5 @@
 			}
 		});</script>
 </body>
+
 </html>

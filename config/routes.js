@@ -8,6 +8,8 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
+const CrudController = require("../api/controllers/CrudController");
+
 module.exports.routes = {
 
   /***************************************************************************
@@ -20,6 +22,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'CrudController.addpage',
+
+  '/home': { view: 'pages/home' },
   '/show': { view: 'pages/showProduct' },
   "POST /Crud/create": 'CrudController.create',
   "GET /Crud/get": 'CrudController.get',
@@ -27,7 +31,15 @@ module.exports.routes = {
   "POST /Crud/updateOne/:id": 'CrudController.update',
   "GET /:id": 'CrudController.delete',
   "POST /upload":"CrudController.upload",
-  "GET /openimg/:filename":"CrudController.openimg"
+  "GET /openimg/:filename":"CrudController.openimg",
+  "GET /description/:id": "CrudController.description",
+
+  '/cart/:id': "CartController.cart",
+  "GET /delete/:id":"CartController.delete",
+  "GET /deleted":"CartController.getcart",
+  "GET /deleteall":"CartController.deleteall",
+
+  "/buy":"CartController.buy"
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

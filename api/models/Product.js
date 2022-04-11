@@ -21,12 +21,10 @@ module.exports = {
     let rules = {
       product: "required",
       price: 'required|min:5|numeric',
-      // image:'required',
     };
     let data2 = {
       product: data.product,
-      price: data.price,
-      // image:data.image,
+      price: data.price,    
     };
     let validate = new Validator(data2, rules);
     if (validate.passes()) {
