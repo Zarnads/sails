@@ -107,13 +107,5 @@ module.exports = {
         }
         catch (err) { res.json({ msg: "error at updatee" }) }
     },
-    cart:async function(req,res){
-        try{
-            let data = await Product.findOne({ _id: req.params.id });
-            
-            res.render("pages/cart",{data:data});
-           
-        }
-        catch (err) { res.json({ msg: "error at updatee" }) }
-    }
+    
 }
