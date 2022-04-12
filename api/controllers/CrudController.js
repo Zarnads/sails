@@ -6,12 +6,14 @@
  */
 
 const multer = require('multer');
+
 let Validator = require('validatorjs');
 const img = require("express-fileupload");
 module.exports = {
     create: async function (req, res) {
         try {
             req.file('file').upload({
+                dirname: '../../assets/images',
                 maxBytes: 1073741824
             }, async function onUploadComplete(err, files) {
                 if (err) {
@@ -39,15 +41,21 @@ module.exports = {
                 const fileName = req.file('file')._files[0].stream.filename;
                 let docPath = `${req.params.userId}_${Math.floor(Date.now() / 1000)}_${fileName}`;
 
+                let text = files[0].fd;
+                const myArray = text.split("/assets");
+                console.log(myArray[1]);
+
                 const obj = Product.validation(req.body);
                 if (obj.data2 != null) {
                     const data = await Product.create({
                         product: req.body.product,
                         price: req.body.price,
+                        description:req.body.description,
                         filepath: files[0].fd,
+                        image:myArray[1],
                         file: files[0].filename,
                     });
-
+                    
                     res.redirect("http://localhost:1337/Crud/get");
                 }
                 else {
@@ -102,6 +110,7 @@ module.exports = {
     description:async function(req,res){
         try{
             let data = await Product.findOne({ _id: req.params.id });
+            
             res.render("pages/description",{data:data});
            
         }

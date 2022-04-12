@@ -85,9 +85,8 @@
 
       <!-- Left Column / Headphones Image -->
       <div class="left-column">
-        <img data-image="black" src="/images/black.png" alt="">
-        <img data-image="blue" src="/images/blue.png" alt="">
-        <img data-image="red" class="active" src="/images/red.png" alt="">
+     
+        <img data-image="red" class="active" src=<%=data.image%> alt="">
       </div>
 
 
@@ -98,40 +97,21 @@
         <div class="product-description">
          
           <h1><%=data.product%></h1>
-          <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+          <p><%=data.description%></p>
         </div>
 
         <!-- Product Configuration -->
         <div class="product-configuration">
 
           <!-- Product Color -->
-          <div class="product-color">
-            <span>Color</span>
-
-            <div class="color-choose">
-              <div>
-                <input data-image="red" type="radio" id="red" name="color" value="red" checked="">
-                <label for="red"><span></span></label>
-              </div>
-              <div>
-                <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                <label for="blue"><span></span></label>
-              </div>
-              <div>
-                <input data-image="black" type="radio" id="black" name="color" value="black">
-                <label for="black"><span></span></label>
-              </div>
-            </div>
-
-          </div>
-
           
 
         <!-- Product Pricing -->
         <div class="product-price">
           <span><%=data.price%></span>
-          <a href="/cart/<%=data.id%>" class="cart-btn">Add to cart</a>   <div class="space">
-          </div><a href="/buy" class="cart-btn">BUY</a>
+          <br>
+          <a href="/cart/<%=data.id%>" class="cart-btn">Add to cart</a><div class="space">
+          </div><a href="/signin" class="cart-btn">BUY</a>
         </div>
         <br>
         

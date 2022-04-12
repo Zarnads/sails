@@ -12,10 +12,11 @@ module.exports = {
             await Cart.create({
                  product:data.product,
                  price:data.price,
+                 image:data.image
 
             })
             let data2 = await Cart.find({});
-         
+             console.log(data2.image);
             res.render("pages/cart",{data2:data2});
            
         }

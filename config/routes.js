@@ -39,7 +39,12 @@ module.exports.routes = {
   "GET /deleted":"CartController.getcart",
   "GET /deleteall":"CartController.deleteall",
 
-  "/buy":"CartController.buy"
+  "/signin":{view:"pages/SignIn"},
+  "/signup":{view:"pages/SignUp"},
+  "POST /SIGNIN":"UserController.signin",
+  "POST /SIGNUP":"UserController.signup",
+
+  "/buy/:id":"CartController.buy"
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

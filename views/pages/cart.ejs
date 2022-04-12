@@ -14,10 +14,10 @@
           <% for ( let i=0; i < data2.length; i++) { %>
    	   <div class="Cart-Items">
    	   	  <div class="image-box">
-   	   	  	<img src="images/apple.png" style={{ height="120px" }} />
+   	   	  	<img src="<%= data2[i].image %>" style={{ height="75px" }} />
    	   	  </div>
    	   	  <div class="about">
-   	   	  	<h1 class="title"> <%= data2[i].product %></h1>
+   	   	  	<p class="title" > <%= data2[i].product %></p>
    	   	  
    	   	  </div>
    	   	  <div class="counter">
@@ -29,6 +29,7 @@
    	   	  	<div class="amount"> <%= data2[i].price %></div>
    	   	  
    	   	  	<a href="/delete/<%=data2[i].id%>"><div class="remove"><u>Remove</u></div></a>
+		<a href="/signin" class="cart-btn">BUY</a>
    	   	  </div>
    	   </div>
 
