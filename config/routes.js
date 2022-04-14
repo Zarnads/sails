@@ -21,14 +21,17 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'CrudController.addpage',
+  'GET /admin/:id': 'CrudController.addpage',
+  " /adminhome": "AdminController.show",
+  "/update/:id":"AdminController.updateOne",
+  "GET /admin/delete/:id":"AdminController.delete",
 
-  '/home': { view: 'pages/home' },
+  '/': { view: 'pages/home' },
   '/show': { view: 'pages/showProduct' },
   "POST /Crud/create": 'CrudController.create',
-  "GET /Crud/get": 'CrudController.get',
-  "GET /Crud/updateOne/:id": 'CrudController.updateOne',
-  "POST /Crud/updateOne/:id": 'CrudController.update',
+  "GET /product": 'CrudController.get',
+  "GET /Crud/updateOne/:id": 'AdminController.updateOne',
+  "POST /Crud/updateOne/:id": 'AdminController.update',
   "GET /:id": 'CrudController.delete',
   "POST /upload":"CrudController.upload",
   "GET /openimg/:filename":"CrudController.openimg",
@@ -44,7 +47,9 @@ module.exports.routes = {
   "POST /SIGNIN":"UserController.signin",
   "POST /SIGNUP":"UserController.signup",
 
-  "/buy/:id":"CartController.buy"
+  "/buy/:id":"CartController.buy",
+  "POST /checkout/:id":"BuyController.checkout",
+  
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

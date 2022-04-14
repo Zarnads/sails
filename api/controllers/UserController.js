@@ -14,16 +14,24 @@ module.exports = {
   
     signin: async function (req, res) {
         try {
-           
+       
             const { email, password } = req.body;
             const useremail = await User.findOne({ email });
+            const usrid = useremail.id;
             const isMatch = await bcrypt.compare(password, useremail.password);
             if (isMatch) {
                 //token generate
                 const token = jwt.sign({ email }, "secret_key", { expiresIn: 24 * 60 * 60 });
                 //token storedin cookie
                 res.cookie("unique", token, { maxAge: 24 * 60 * 60 * 1000 });
-                res.redirect("/buy/:id");
+                const usr = res.locals.user;
+                console.log(usr.id);
+                if(useremail.admin == false){
+                    res.redirect(`/buy/${usrid}`);
+                }
+                else{
+                    res.redirect(`/admin/${usrid}`);
+                }
                 
                
             } else { res.json({ msg: "invalid login details" }) }
@@ -42,6 +50,7 @@ module.exports = {
                         username:req.body.username,
                         email: req.body.email,
                         password: hash,
+                        admin:false,
                         
                     })
                    

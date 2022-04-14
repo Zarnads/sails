@@ -57,8 +57,9 @@ module.exports = {
     },
     buy:async function(req,res){
         try{
+            const buyid = req.params.id;
             let data2 = await Cart.find({});
-            res.render("pages/buy",{data2:data2});
+            res.render("pages/buy",{data2:data2,buyid:buyid});
            
         }
         catch (err) { res.json({ msg: "error at buy" }) }

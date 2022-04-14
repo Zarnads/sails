@@ -39,5 +39,6 @@ module.exports.views = {
   layout: 'layouts/layout',
   layout: 'layouts/homeLayout',
   layout: 'layouts/showLayout',
-  layout: 'layouts/updateLayout'
+  layout: 'layouts/updateLayout',
+  layout: 'layouts/adminhomeLayout',
 };

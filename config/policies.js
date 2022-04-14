@@ -9,8 +9,13 @@
  */
 
 module.exports.policies = {
+  UserController : {
+    signin:"policy",
 
 
+  }
+
+  
   
 
 
