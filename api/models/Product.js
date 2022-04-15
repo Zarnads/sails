@@ -15,6 +15,10 @@ module.exports = {
       type: 'number',
       required: true,
     },
+    category: {
+      type: 'string',
+      required: true,
+    },
  
   },
   validation: function (data) {

@@ -4,6 +4,25 @@
 	<title>Shopping Cart UI</title>
 	<link rel="stylesheet" type="text/css" href="/styles/cart.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<STYLE>.item {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+  }
+  
+  .btn-pay {
+	background-color: #C800Da;
+	border: 0;
+	color: #fff;
+	font-weight: 600;
+  }
+  
+  .fa-ticket {
+	color: #0e1fa1;
+  }</STYLE>
 </head>
 <body>
    <div class="CartContainer">
@@ -21,29 +40,50 @@
    	   	  
    	   	  </div>
    	   	  <div class="counter">
-   	   	  	<div class="btn">+</div>
-   	   	  	<div class="count">2</div>
-   	   	  	<div class="btn">-</div>
+			<div class="container mt-5 mb-5">
+				<div class="row justify-content-center">
+				  <div class="col-xl-7 col-lg-8 col-md-7">
+					<div class="border border-gainsboro p-3">
+					  <div class="pass-quantity col-lg-3 col-md-4 col-sm-3">
+						<label for="pass-quantity"  class="pass-quantity">Quantity</label>
+						<input class="form-control"  id="quantity" type="number" value="1" min="1">
+					  </div>
+					  <div class="remove-item pt-4">
+						<button class="remove-product btn-light">
+						  Delete
+						</button>
+					  </div>
+					</div>
+				
+				  </div>
+				</div>
+			  </div><!-- container -->
    	   	  </div>
    	   	  <div class="prices">
-   	   	  	<div class="amount"> <%= data2[i].price %></div>
-   	   	  
+			
+			<input readonly="readonly" id= "firstNumber" value=<%=data2[i].price%>  >
+					<input type="button" onClick="multiplyBy()" Value="Total" />
+					<p>The Total is : <br>
+						<span id = "result"></span>
+						</p>
    	   	  	<a href="/delete/<%=data2[i].id%>"><div class="remove"><u>Remove</u></div></a>
 		<a href="/signin" class="cart-btn">BUY</a>
    	   	  </div>
    	   </div>
 
-          <% } %>  
+
    	 <hr> 
-   	 <div class="checkout">
-   	 <div class="total">
-   	 	<div>
-   	 		<div class="Subtotal">Sub-Total</div>
-   	 		<div class="items">2 items</div>
-   	 	</div>
-   	 	<div class="total-amount"></div>
-   	 </div>
-   	 <button class="button">Checkout</button></div>
-   </div>
+		<script>
+			function multiplyBy(){
+				num1 = parseInt(document.getElementById("firstNumber").value);
+				num2 = parseInt(document.getElementById("quantity").value);
+				document.getElementById("result").innerHTML = num1 * num2;
+	
+			}
+		</script>
+            <% } %>  
+
+	
+ 
 </body>
 </html>

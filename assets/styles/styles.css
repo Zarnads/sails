@@ -361,6 +361,7 @@ a:focus {
 
 .product_section .box {
     position: relative;
+  
     margin-top: 25px;
     padding: 35px 35px;
     background-color: #f7f8f9;
@@ -385,6 +386,7 @@ a:focus {
 }
 
 .product_section .box .img-box img {
+  display: flex;
   max-width: 100%;
   max-height: 160px;
   -webkit-transition: all .3s;

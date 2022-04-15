@@ -51,6 +51,7 @@ module.exports = {
                         product: req.body.product,
                         price: req.body.price,
                         description:req.body.description,
+                        category:req.body.category,
                         filepath: files[0].fd,
                         image:myArray[1],
                         file: files[0].filename,
@@ -73,6 +74,13 @@ module.exports = {
             res.render("pages/showProduct", { data: data });
         } catch { res.json({ msg: "err at get" }) }
     },
+    get: async function (req, res) {
+        try {
+            const data = await Product.find();
+            res.render("pages/showproductUser", { data: data });
+        } catch { res.json({ msg: "err at get" }) }
+    },
+   
    
     description:async function(req,res){
         try{
@@ -83,5 +91,33 @@ module.exports = {
         }
         catch (err) { res.json({ msg: "error at updatee" }) }
     },
-    
+    categoryE:async function (req, res) {
+        try {
+            let data = await Product.find({category:"Electronics"});
+           
+            res.render("pages/showProduct", { data: data });
+        } catch { res.json({ msg: "err at get" }) }
+    },
+    categoryD:async function (req, res) {
+        try {
+            let data = await Product.find({category:"Dress"});
+           
+            res.render("pages/showProduct", { data: data });
+        } catch { res.json({ msg: "err at get" }) }
+    },
+    categoryS:async function (req, res) {
+        try {
+            console.log("aa raha hai");
+            let data = await Product.find({category:"Shoes"});
+           
+            res.render("pages/showProduct", { data: data });
+        } catch { res.json({ msg: "err at get" }) }
+    },
+    categoryJ:async function (req, res) {
+        try {
+            let data = await Product.find({category:"Jwellery"});
+           
+            res.render("pages/showProduct", { data: data });
+        } catch { res.json({ msg: "err at get" }) }
+    },
 }

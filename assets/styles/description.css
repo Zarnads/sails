@@ -198,28 +198,35 @@ html, body {
 }
 
 /* Responsive */
-@media (max-width: 940px) {
+@media (max-width: 200px) {
   .container {
     flex-direction: column;
     margin-top: 60px;
   }
 
-  .left-column,
+  .left-column{
+    width:100%;
+    padding: 200px; 
+
+  }
   .right-column {
     width: 100%;
+    margin-left: 200px;
   }
 
   .left-column img {
-    width: 300px;
+    width: 200px;
+    padding: 200px;
+    margin: 200px;
     right: 0;
     top: -65px;
     left: initial;
   }
 }
 
-@media (max-width: 535px) {
+@media (max-width: 200px) {
   .left-column img {
-    width: 220px;
+    width: 200px;
     top: -85px;
   }
 }

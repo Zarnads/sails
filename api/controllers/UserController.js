@@ -27,7 +27,7 @@ module.exports = {
                 const usr = res.locals.user;
                 console.log(usr.id);
                 if(useremail.admin == false){
-                    res.redirect(`/buy/${usrid}`);
+                    res.redirect(`/product/${usrid}`);
                 }
                 else{
                     res.redirect(`/admin/${usrid}`);
@@ -60,6 +60,9 @@ module.exports = {
         }
         catch (err) { return res.status(400).json({ message: "error at catch" }) }
     },
+    check:async function(req,res){
+        
+    }
 
 };
 

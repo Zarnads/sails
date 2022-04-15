@@ -29,7 +29,9 @@ module.exports.routes = {
   '/': { view: 'pages/home' },
   '/show': { view: 'pages/showProduct' },
   "POST /Crud/create": 'CrudController.create',
-  "GET /product": 'CrudController.get',
+  "GET /product": 'CrudController.get', //visitor
+  "GET /product/:id": 'CrudController.get', // user
+  
   "GET /Crud/updateOne/:id": 'AdminController.updateOne',
   "POST /Crud/updateOne/:id": 'AdminController.update',
   "GET /:id": 'CrudController.delete',
@@ -49,7 +51,11 @@ module.exports.routes = {
 
   "/buy/:id":"CartController.buy",
   "POST /checkout/:id":"BuyController.checkout",
-  
+
+  "/category/electronics":"CrudController.categoryE",
+  "/category/shoes":"CrudController.categoryS",
+  "/category/dress":"CrudController.categoryD",
+  "/category/jwellery":"CrudController.categoryJ",
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
