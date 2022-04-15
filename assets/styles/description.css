@@ -206,18 +206,13 @@ html, body {
 
   .left-column{
     width:100%;
-    padding: 200px; 
-
   }
   .right-column {
     width: 100%;
-    margin-left: 200px;
   }
 
   .left-column img {
     width: 200px;
-    padding: 200px;
-    margin: 200px;
     right: 0;
     top: -65px;
     left: initial;

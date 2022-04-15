@@ -8,12 +8,13 @@
 module.exports = {
     cart:async function(req,res){
         try{
+            const usr = res.locals.user;
             let data = await Product.findOne({ _id: req.params.id });
             await Cart.create({
                  product:data.product,
                  price:data.price,
-                 image:data.image
-
+                 image:data.image,
+                 usr:usr.id,
             })
             let data2 = await Cart.find({});
              console.log(data2.image);
@@ -24,10 +25,9 @@ module.exports = {
     },
     getcart:async function(req,res){
         try{
-            let data2 = await Cart.find({});
-         
+            const usr = res.locals.user;
+            let data2 = await Cart.find({usr:usr.id});
             res.render("pages/cart",{data2:data2});
-           
         }
         catch (err) { res.json({ msg: "error at getcart" }) }
     },

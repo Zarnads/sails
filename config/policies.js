@@ -13,6 +13,11 @@ module.exports.policies = {
     signin:"policy",
 
 
+  },
+  CartController : {
+    cart:"policy",
+    getcart:"policy",
+
   }
 
   
